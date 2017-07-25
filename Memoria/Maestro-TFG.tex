@@ -1,0 +1,99 @@
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left = 2.5cm, top = 2cm, right = 2.5cm, bottom = 2cm]{geometry}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{comment, enumerate}
+\usepackage{xspace}
+\usepackage{slashbox}
+\usepackage{multirow}
+\usepackage{array, graphicx, euscript}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{url}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{examplep}
+\usepackage{fancyvrb}
+\usepackage[bibnewpage]{apacite}
+\usepackage{fancyhdr}
+
+\spanishdecimal{.}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\renewcommand{\baselinestretch}{1}
+\renewcommand{\spanishtablename}{Tabla}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\fancyhead[RE]{\nouppercase{\rightmark}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\newenvironment{itemize*}
+        {\begin{itemize}
+            \setlength{\itemsep}{1pt}
+            \setlength{\parsep}{3pt}
+            \setlength{\parskip}{3pt}}
+        {\end{itemize}}
+
+\newenvironment{enumerate*}
+        {\begin{enumerate}
+            \setlength{\itemsep}{1pt}
+            \setlength{\parsep}{3pt}
+            \setlength{\parskip}{3pt}}
+        {\end{enumerate}}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\part{Introducción}
+\lhead [\thepage]{I. Introducción}
+\rhead [I. Introducción]{\thepage}
+\input{Capitulos/Introduccion}
+
+\newpage
+\part{Conceptos generales}
+\lhead [\thepage]{II. Conceptos generales}
+\rhead [II. Conceptos generales]{\thepage}
+\input{Capitulos/Conceptos}
+
+\newpage
+\part{Estructura de los datos temporales en $\textsf{R}$}
+\lhead [\thepage]{III. Estructura de los datos temporales en $\textsf{R}$}
+\rhead [III. Estructura de los datos temporales en $\textsf{R}$]{\thepage}
+\input{Capitulos/Estructura}
+
+\part{Modelización de series temporales}
+\lhead [\thepage]{IV. Modelización de series temporales}
+\rhead [IV. Modelización de series temporales]{\thepage}
+\input{Capitulos/Modelizacion}
+
+\part{Conclusiones}
+\lhead [\thepage]{V. Conclusiones}
+\rhead [V. Conclusiones]{\thepage}
+\input{Capitulos/Conclusiones}
+
+\renewcommand{\refname}{Bibliografía}
+
+\bibliographystyle{apacite}
+\bibliography{referencias-TFG}
+\lhead [\thepage]{Bibliografía}
+\rhead [Bibliografía]{\thepage}
+
+\end{document}

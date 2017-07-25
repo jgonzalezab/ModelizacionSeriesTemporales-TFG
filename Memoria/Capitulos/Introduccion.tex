@@ -1,0 +1,41 @@
+
+El análisis de la evolución de una variable a lo largo del tiempo nos conduce hacia un conjunto de problemas únicos en la modelización e inferencia estadística: el análisis de series temporales. Una serie temporal es una secuencia de variables aleatorias $Y_1,Y_2,Y_3...$ donde la variable $Y_t$ denota el valor tomado por la serie en el tiempo $t$. Generalmente en una serie temporal los valores de $t$ son discretos cumpliéndose que $t \in \mathbb{N}$ \cite{chatfield2016analysis}.
+
+Estas variables aleatorias generalmente van a estar correlacionadas temporalmente por lo que se suelen necesitar técnicas de modelización e inferencia específicas. Estas técnicas se pueden aplicar con éxito gracias al aprovechamiento de la potencia computacional disponible hoy en día, aunque no se debe nunca dejar de lado la teoría matemática y estadística sobre la que se sustentan.
+
+Son muchos los enfoques existentes para trabajar con series temporales. Podemos optar por un enfoque clásico o determinista en el que suponemos  que la serie está compuesta por la combinación de varias componentes, cada una de las cuales recoge ciertas características de la serie. El objetivo entonces es estimar y combinar estas componentes a fin de conocer el comportamiento general de la serie. También podemos trabajar bajo la metodología Box-Jenkins, la cual supone que la serie es la realización de un proceso estocástico determinado y modelizable. Esta metodología nos aporta un conjunto de procedimientos para preparar los datos, ajustar el modelo idóneo y realizar predicciones a corto y medio plazo, para ello se apoya en modelos ARIMA, los cuales estiman las observaciones futuras a través de una función lineal de las observaciones e innovaciones (residuos) pasadas. Además, existen otro tipo de técnicas más generales como las redes neuronales, que a partir de algoritmos más complejos consiguen calcular predicciones muy precisas.
+
+Algunas de estas técnicas se pueden implementar fácilmente a través de software especializado como SPSS, Gretl, Stata o incluso Excel. Sin embargo, parece que en la actualidad se están imponiendo lenguajes de programación como $\textsf{R}$, Python u Octave. Esto se debe principalmente a tres motivos:
+
+\begin{itemize*}
+  \item[$\bullet$]Son software libre.
+  \item[$\bullet$]Al ser proyectos colaborativos es posible encontrar técnicas estadísticas actuales implementadas muchas veces con inmediatez.
+  \item[$\bullet$]Ofrecen una flexibilidad de desarrollo enorme al poder modificar todo el código detrás de las técnicas a utilizar.
+\end{itemize*}
+
+De todos los lenguajes mencionados el más usado dentro de la comunidad estadística es $\textsf{R}$, ya que está completamente orientado al análisis de datos. Posee una gran cantidad de librerías con métodos que implementan modelos para la predicción de series temporales, además de su correspondiente preprocesado.
+
+A pesar de todas las ventajas mencionadas, muchos profesionales e investigadores renuncian a las posibilidades que ofrecen estos lenguajes de programación ya que aprender un lenguaje de este estilo no es sencillo y requiere de una gran inversión de tiempo. A partir de todo esto surge el interés de elaborar una guía o manual que permita al usuario extraer valor de sus series temporales a partir del lenguaje de programación $\textsf{R}$. Para ello es necesario conocer la teoría detrás de las técnicas más utilizadas así como su correcta implementación. Debido a esto se ha llevado a cabo una exhaustiva revisión bibliográfica tanto de la teoría estadística como de las librerías de $\textsf{R}$ necesarias para este tipo de análisis.
+	
+Como resultado se ha conseguido elaborar una guía que esperamos sea de gran utilidad para aquellos profesionales e investigadores que necesitan realizar un análisis exhaustivo de series temporales. Para ello se realiza un recorrido por todo el ciclo de vida de la serie temporal en $\textsf{R}$: estructuración del dato, preprocesado, modelización, validación y predicción. Además se compararán distintas librerías en términos de capacidad predictiva y eficiencia.\\
+\\
+Los objetivos principales del presente trabajo son:
+
+\begin{itemize*}
+  \item[$\bullet$]Llevar a cabo una revisión bibliográfica de las librerías más utilizadas en $\textsf{R}$ para el análisis de series temporales y de la teoría de las técnicas empleadas.
+  \item[$\bullet$]Proveer al usuario de una guía que muestre el ciclo de vida de las series temporales en $\textsf{R}$.
+\end{itemize*}
+
+Los objetivos específicos a perseguir son:
+
+\begin{itemize*}
+  \item[$\bullet$]Introducir la teoría necesaria para comprender las series temporales y algunas de las técnicas más utilizadas para su análisis.
+  \item[$\bullet$]Estudiar la estructuración de las series temporales en $\textsf{R}$ a través de las librerías más utilizadas para ello.
+  \item[$\bullet$]Comprender los métodos de preprocesado y modelización implementados por la librería $\verb!forecast!$.
+  \item[$\bullet$]Estudiar la librería $\verb!TSeries!$, destacando la implementación de técnicas de remuestreo para series temporales.
+  \item[$\bullet$]Observar las características de la librería $\verb!FitARMA!$.
+  \item[$\bullet$]Estudiar los métodos de combinación de predicciones de la librería $\verb!opera!$.
+  \item[$\bullet$]Comparar las distintas librerías en términos de utilidad, eficiencia y resultados.
+\end{itemize*}
+
+Para cumplir con estos objetivos se ha estructurado el trabajo de la siguiente forma: en primer lugar se presentarán algunos conceptos generales para poder comprender en qué consisten las series temporales y algunas de las técnicas más utilizadas. En segundo lugar se presentarán las librerías $\verb!stats!$, $\verb!zoo!$ y $\verb!xts!$ con el objetivo de estudiar las distintas formas que tiene $\textsf{R}$ de estructurar este tipo de datos. Además se estudiarán algunos métodos básicos para el preprocesado de las series. Una vez estructurados nuestros datos estudiaremos la librería $\verb!forecast!$. Comenzaremos con un preprocesado en el que estudiaremos la estacionalidad y descompondremos la serie. A continuación recorreremos varios modelos en orden de complejidad, comenzando con modelos ingenuos y terminando con la implementación de modelos ARIMA y redes neuronales. Compararemos los distintos modelos respecto a su poder predictivo. Realizaremos el mismo proceso sobre la librería $\verb!TSeries!$, haciendo especial hincapié en las técnicas de remuestreo. Con esta librería también implementaremos varios test estadísticos de raíz unitaria. A continuación estudiaremos la implementación de los modelos ARMA que realiza la librería $\verb!FitARMA!$, y compararemos su tiempo de ejecución con el de las librerías anteriores. Con la librería $\verb!opera!$ combinaremos las predicciones realizadas por tres modelos distintos a fin de ver si mejoran las predicciones. Por último compararemos las librerías respecto a la eficiencia, utilidad y poder predictivo.

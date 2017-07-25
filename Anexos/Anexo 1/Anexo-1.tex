@@ -1,0 +1,52 @@
+\documentclass[12pt,a4paper,oneside]{article}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left = 2.5cm, top = 2cm, right = 2.5cm, bottom = 2cm]{geometry}
+
+\spanishdecimal{.}
+
+\renewcommand{\baselinestretch}{1}
+
+\newpage\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\begin{document}
+
+\part*{Anexo I}
+
+\subsection*{Suavizado con splines}
+Este tipo de suavizado se sustenta en la aproximación que se suele hacer de funciones polinómicas complejas a través de \textit{splines}. Este tipo de técnicas dividen la función a aproximar en intervalos para los cuales se ajusta individualmente una función del orden deseado, dependiendo del grado de ajuste que queramos.
+
+Para aplicar esta técnica a nuestra serie temporal primero dividiremos el tiempo $t$ en $k$ intervalos iguales:
+\begin{equation}
+   [t_{1} = 1, t_{2}],[t{2} + 1, t{3}],...,[t_{k-1}+1, t_{k} = n]
+\end{equation}
+
+En los que los valores $t_{1}, t_{2}, ..., t_{k}$ reciben el nombre de nudos. Hecho esto a cada intervalo se le ajusta una función de regresión dependiente del tiempo de la forma:
+\begin{equation}
+   \beta_{0} + \beta_{1}t + ... + \beta_{k}t^p
+\end{equation}
+
+Normalmente con un $p = 3$ suele ser suficiente para captar el comportamiento de la serie. Hasta ahora lo único que hemos hecho ha sido realizar un suavizado un poco más elaborado a través de funciones polinómicas. El suavizado con \textit{splines} va un poco más allá e intenta encontrar la relación óptima entre el ajuste y el grado del spline dada por:
+\begin{equation}
+   \sum_{t = 1}^{n} (Y_{t} - f_{t})^2 + \lambda \int(f''_{t})^2 dt
+\end{equation}
+
+Donde $f_{t}$ es un \textit{spline} cúbico con nudos en todo $t$. Si $\lambda > 0$ entonces el suavizado que se logra es mayor eliminando la gran parte de fluctuaciones propias de la serie. El ajuste de este parámetro determinará el grado de ajuste de la seria suavizada a la original.
+
+\subsection*{Suavizado con kernel}
+El suavizado a través de kernels es una técnica utilizada para suavizar series temporales muy influenciadas por la aleatoriedad, es decir, con mucho ruido. Es una técnica no paramétrica que nos permite una muy buena suavización de series complejas debido a su facilidad de ajuste a procesos no lineales.
+
+Este tipo de técnicas suavizan la serie en un punto $t$ a partir de observaciones pasadas y futuras dentro de un entorno delimitado por el ancho de banda $b$. Este parámetro determinará el grado de suavizado de la serie, ya que si nuestro entorno es amplio se tendrán en cuenta más observaciones haciendo que el suavizado sea mayor. Si el ancho de banda es pequeño las fluctuaciones de la serie tendrán una mayor presencia en la suavización.
+
+La estimación de $Y_{t}$ es una media ponderada de los valores pasados y futuros dentro del entorno seleccionado. Esta ponderación se realiza a través de una función kernel $K$:
+\begin{equation}
+   Y'_{t} = \frac{\sum_{i = 1}^{n} K(\frac{t-i}{b}) \thinspace Y_{i}}{\sum_{j = 1}^{n} K(\frac{t-j}{b})}
+\end{equation}
+
+\noindent siendo $1,...,n$ las observaciones del entorno generado por $b$. Existen una gran variedad de funciones kernel aunque quizás las que más se suele usar es la Gaussiana:
+\begin{equation}
+   K(z) = \frac{1}{\sqrt{2 \pi}} \thinspace e^{-z^2/2}
+\end{equation} 
+
+\end{document}

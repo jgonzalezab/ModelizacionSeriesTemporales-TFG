@@ -1,0 +1,27 @@
+
+La elaboración de esta guía nos ha permitido obtener un conocimiento más profundo sobre el análisis de series temporales en $\textsf{R}$.
+
+En ocasiones, la parte más laboriosa es la de la estructuración de los datos. Hay que tener cuidado a la hora de generar la fecha, pues $\textsf{R}$ no destaca en el tratamiento de este tipo de objetos. En este caso la clase $\verb!ts!$ acepta fechas sin necesidad de introducir objetos de clase $\verb!date!$, por lo que nos puede resultar útil cuando la serie está estructurada regularmente, sin embargo las clases $\verb!zoo!$ y $\verb!xts!$ se adaptan mejor a tiempos irregulares. Los métodos orientados al tratamiento de $\verb!NAs!$ incluidos en la librería $\verb!zoo!$ funcionan muy bien y son realmente útiles. Además si queremos hacer algún tratamiento sencillo de los datos podemos hacerlo, con métodos como $\verb!rollmean()!$ y $\verb!rollapply()!$. La librería $\verb!xts!$ implementa una conversión entre clases más sencilla por lo que quizás convendría inclinarse más hacia ella que hacia $\verb!zoo!$. Si se necesita hacer algún tratamiento de los datos conviene utilizar $\verb!zoo!$ o $\verb!xts!$ y en el momento en el que tengamos la serie lista la convertimos a la clase $\verb!ts!$ ya que, pese a su sencillez, es la que más se usa y la que, por tanto, menos problemas da cuando se utiliza con métodos de librerías externas.
+
+Uno de los puntos fuertes de la librería $\verb!forecast!$ es su variedad ya que incluye una gran cantidad de métodos encargados de implementar distintos modelos, la mayor parte de ellos orientados a la predicción. Esta variedad nos permite diseñar una búsqueda del modelo óptimo basada en la complejidad, es decir, podemos comenzar con modelos sencillos e ir ascendiendo en complejidad hasta encontrar uno que sin ser excesivamente complejo nos ofrezca los resultados que buscamos. Además nos aporta métodos orientados al preprocesado de la serie, pudiendo diferenciar, descomponer, introducir rezagos, aplicar test de raíz unitaria o estudiar la estacionalidad sin necesidad de recurrir a otra librería. Una vez ajustado un modelo es sencillo predecir con él y comparar los resultados con el conjunto de \textit{test}, pudiéndose obtener una gran cantidad de medidas de precisión. También incluye métodos muy útiles para estudiar los residuos y comprobar si efectivamente son ruido blanco.
+
+La librería $\verb!TSeries!$ no es tan completa como $\verb!forecast!$ pero contiene métodos muy útiles. Implementa multitud de test estadísticos, los cuales pueden sernos de gran utilidad para conocer bien nuestra serie, a fin de ajustarla un modelo u otro. Además implementa también técnicas de remuestreo, algo difícil de encontrar en este tipo de librerías. Al no tener métodos orientados al preprocesado es necesario recurrir a otras librerías. Únicamente implementa modelos ARMA, por lo que este preprocesado es indispensable. Una vez ajustado el modelo no nos da la opción de predecir con él, por lo que necesitaríamos escribir una función que se encargase de esto, algo que puede llegar a ser realmente laborioso.
+
+La librería $\verb!FitARMA!$ es similar a $\verb!TSeries!$ solo que esta está orientada únicamente a ajustar modelos ARIMA. Se caracteriza por el algoritmo que utiliza para la estimación. En teoría este algoritmo hace que el método ajuste el modelo con un menor coste computacional en comparación a otras librerias, sin embargo hemos visto que los que mejores tiempos se obtienen con los métodos de $\verb!forecast!$ y  $\verb!TSeries!$.
+
+La librería $\verb!opera!$ nos permite mejorar las predicciones mediante la combinación de varios modelos. Nos permite realizar estas combinaciones teniendo o no en  cuenta el tiempo, además algunos métodos ofrecen gráficos muy útiles que nos ayudan a visualizar los resultados. Es una librería algo más complicada de utilizar que las anteriores pero nos puede dar muy buenos resultados.
+
+El ciclo de vida de los datos temporales en $\textsf{R}$ desarrollado en este trabajo se puede resumir en las siguientes etapas:
+
+\begin{itemize*}
+  \item[$\bullet$] \textbf{Estructuración}: Apoyarnos en las librerías $\verb!zoo!$ y $\verb!xts!$ para dar forma a los datos si es necesario. Convertir el objeto final en uno de clase $\verb!ts!$.
+  \item[$\bullet$] \textbf{Preprocesado}: Utilizar la librería $\verb!forecast!$. Podemos apoyarnos en métodos de la librería $\verb!TSeries!$.
+  \item[$\bullet$] \textbf{Modelización}: Con $\verb!forecast!$ debería ser suficiente. Podemos apoyarnos en $\verb!TSeries!$ y $\verb!FitARMA!$, aunque no suele ser necesario.
+  \item[$\bullet$] \textbf{Validación}: $\verb!Forecast!$ posee muchos métodos para evaluar los modelos ajustados.
+  \item[$\bullet$] \textbf{Predicción}: Las predicciones iniciales las hacemos con $\verb!forecast!$. Si hemos ajustado más de un modelo podemos mejorar los resultados con $\verb!opera!$.
+\end{itemize*}
+
+
+
+
+

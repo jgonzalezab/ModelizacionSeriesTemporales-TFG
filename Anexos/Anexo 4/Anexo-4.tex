@@ -1,0 +1,27 @@
+\documentclass[12pt,a4paper,oneside]{article}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left = 2.5cm, top = 2cm, right = 2.5cm, bottom = 2cm]{geometry}
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+
+\spanishdecimal{.}
+
+\newpage\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\renewcommand{\baselinestretch}{1}
+
+\begin{document}
+
+\part*{Anexo IV}
+
+\subsection*{Holt-Winters multiplicativo con tendencia amortiguada}
+
+\begin{align}
+  \widehat{Y}_{t+h} &= [l_t + (\phi + \phi^2 + ... + \phi^h)b_t] S_{t - M + h^+_M} \\
+  l_t &= \alpha \frac{Y_t}{S_{t-M}} + (1 -\alpha)(l_{t-1}+ \phi b_{t-1}) \\
+  b_t &= \beta(l_t - l_{t-1}) + (1 -\beta) \phi b_{t-1} \\
+  S_t &= \gamma \frac{Y_t}{(l_{t-1} + \phi b_{t-1})} + (1 - \gamma) S_{t-M}
+\end{align} 
+
+\end{document}

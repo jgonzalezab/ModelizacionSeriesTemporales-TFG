@@ -1,0 +1,32 @@
+\documentclass[12pt,a4paper,oneside]{article}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left = 2.5cm, top = 2cm, right = 2.5cm, bottom = 2cm]{geometry}
+
+\spanishdecimal{.}
+
+\newpage\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\renewcommand{\baselinestretch}{1}
+
+\begin{document}
+
+\part*{Anexo VI}
+
+\subsection*{Modelos SARIMA}
+Los modelos SARIMA son una variación de los modelos ARIMA orientados a modelizar también la parte estacional de la serie. Estos modelos se forman añadiendo parámetros adicionales al ARIMA, los cuales se encargan de modelizar la parte estacional:
+\begin{equation}
+    SARIMA(p,d,q)(P,D,Q)_{12}
+\end{equation}
+
+\noindent donde $M$ es el periodo estacional de la serie. Los parámetros $P$, $D$ y $Q$ son similares a los $p$, $d$ y $q$ del ARIMA solo que en este caso los rezagos se hacen a nivel estacional. Por ejemplo, si tenemos un SARIMA con $P = 1$, $D = 1$, $Q = 2$ significa que se ha necesitado diferenciar la serie a nivel estacional y que la observación $Y_t$ se ve influenciada por su respectivo valor en el periodo estacional anterior y por sus innovaciones pasadas en los dos periodos anteriores.
+
+Sabiendo esto la expresión general de un modelo SARIMA es la siguiente:
+\begin{equation}
+dDY_t = a_{t} + \sum_{i=1}^{p} \phi_{i} Y_{t-i} + \sum_{i=1}^{q} (-\theta_{i}) a_{t-i} + \sum_{S=1}^{P} \psi_{S} Y_{t-MS} + \sum_{S=1}^{Q} \gamma_{S} a_{t-MS}
+\end{equation}
+
+Es posible seleccionar los valores de $P$ y $Q$ con el FAC y FACP. En este caso las correlaciones significativas aparecen en los rezagos correspondientes a la estacionalidad de la serie. Por ejemplo un SARIMA$(0,0,0)(2,0,0)_{12}$ mostrará correlaciones significativas para los rezagos 12 y 24 en el FACP, sin embargo decrecerá sin anularse en el FAC.
+
+\end{document}
